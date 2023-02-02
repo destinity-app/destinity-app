@@ -20,4 +20,4 @@ COPY --from=publish /app/publish/wwwroot .
 COPY ["nginx.conf", "/etc/nginx/nginx.conf"]
 
 # Heroku port switch
-CMD sed -i -e 's/$PORT/'"$PORT"'/g' etc/nginx/nginx.conf && nginx -g 'daemon off;'
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf && nginx -g 'daemon off;'
