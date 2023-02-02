@@ -1,9 +1,5 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+﻿FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+ARG PORT
 WORKDIR /src
 COPY ["Destinity/Destinity.csproj", "Destinity/"]
 RUN dotnet restore "Destinity/Destinity.csproj"
