@@ -13,10 +13,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="wwwroot\assets" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Watch Include="..\**\*.razor" />
 		<Watch Include="..\**\*.scss" />
 		<Watch Include="..\**\*.css" />
