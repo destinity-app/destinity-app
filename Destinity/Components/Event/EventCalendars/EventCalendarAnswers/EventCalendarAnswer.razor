@@ -1,0 +1,45 @@
+﻿<MudTooltip Delay="500" Text="@_tooltip" Color="Color.Default">
+    <MudIconButton Icon="@_icon" OnClick="OnClick" Color="@_color"/>
+</MudTooltip>
+
+
+@code {
+
+    [Inject]
+    protected IThemeProvider ThemeProvider { get; set; } = null!;
+
+    private AnswerStatus _status = AnswerStatus.Unknown;
+    private string _icon = Icons.Material.Filled.CheckBoxOutlineBlank;
+    private Color _color = Color.Default;
+    private string _tooltip = "Click to change";
+
+    private void OnClick() {
+        switch (_status) {
+            case AnswerStatus.Unknown:
+                _status = AnswerStatus.Accepted;
+                _icon = Icons.Material.Filled.CheckBox;
+                _color = Color.Success;
+                _tooltip = "Yes";
+                break;
+            case AnswerStatus.Accepted:
+                _status = AnswerStatus.OnlyIfNeeded;
+                _icon = Icons.Material.Filled.CheckBox;
+                _color = Color.Warning;
+                _tooltip = "Only if needed";
+                break;
+            case AnswerStatus.OnlyIfNeeded:
+                _status = AnswerStatus.Rejected;
+                _icon = Icons.Material.Filled.IndeterminateCheckBox;
+                _color = Color.Error;
+                _tooltip = "Cannot attend";
+                break;
+            case AnswerStatus.Rejected:
+                _status = AnswerStatus.Unknown;
+                _icon = Icons.Material.Filled.CheckBoxOutlineBlank;
+                _color = Color.Default;
+                _tooltip = "Click to change";
+                break;
+        }
+    }
+
+}

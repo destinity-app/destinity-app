@@ -1,0 +1,9 @@
+﻿@page "/Event/{eventId:guid}"
+@using Destinity.Components.Event
+
+<Event EventId="EventId"></Event>
+
+@code {
+    [Parameter]
+    public Guid EventId { get; set; }
+}
