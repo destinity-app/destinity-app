@@ -1,13 +1,9 @@
 ﻿<MudTooltip Delay="500" Text="@_tooltip" Color="Color.Default">
-    <MudIconButton Icon="@_icon" OnClick="OnClick" Color="@_color"/>
+    <MudIconButton Class="answer-button" Icon="@_icon" OnClick="OnClick" Color="@_color"/>
 </MudTooltip>
 
 
 @code {
-
-    [Inject]
-    protected IThemeProvider ThemeProvider { get; set; } = null!;
-
     private AnswerStatus _status = AnswerStatus.Unknown;
     private string _icon = Icons.Material.Filled.CheckBoxOutlineBlank;
     private Color _color = Color.Default;
@@ -43,3 +39,15 @@
     }
 
 }
+
+<style media="screen and (max-width: 740px)">
+.answer-button {
+    padding: 4px 8px;
+}
+</style>
+
+<style media="screen and (min-width: 740px)">
+.answer-button {
+    padding: 4px 16px;
+}
+</style>

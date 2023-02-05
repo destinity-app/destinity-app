@@ -1,0 +1,9 @@
+﻿<div>
+    <MudText Typo="Typo.h4">@Date.Day</MudText>
+    <p>@Date.ToString("MMM")</p>
+</div>
+
+@code {
+    [Parameter]
+    public DateOnly Date { get; set; }
+}

@@ -1,18 +1,17 @@
-﻿@inherits LayoutComponentBase
+﻿@using Destinity.Theme
+@inherits LayoutComponentBase
 
-
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="ThemeProvider.GetTheme()"/>
+<MudThemeProvider IsDarkMode="true" Theme="DefaultTheme.Value"/>
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
     <MudAppBar Elevation="0" Class="app-bar" DisableGutters="true">
         @* <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" /> *@
-        <MudDrawerHeader>
+        <MudDrawerHeader LinkToIndex="true" Dense="true">
             <MudImage Src="assets/logo.png" Class="logo" Height="60"/>
         </MudDrawerHeader>
         <MudSpacer />
-        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode"/>
     </MudAppBar>
     @* <MudDrawer @bind-Open="_drawerOpen" Elevation="1"> *@
     @*     <NavMenu /> *@
@@ -25,8 +24,6 @@
 </MudLayout>
 
 @code {
-    [Inject]
-    protected IThemeProvider ThemeProvider { get; set; } = null!;
 
     // bool _drawerOpen;
     //
@@ -34,8 +31,6 @@
     // {
     //     _drawerOpen = !_drawerOpen;
     // }
-    
-    private bool _isDarkMode = true;
 }
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 ﻿using MudBlazor;
 
-namespace Destinity.Services.ThemeProvider; 
+namespace Destinity.Theme; 
 
 public class DefaultTheme {
 	public static MudTheme Value { get; } = new() {
