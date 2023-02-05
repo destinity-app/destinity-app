@@ -1,0 +1,11 @@
+﻿.event-calendar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.save-button {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}

@@ -1,13 +1,19 @@
 ﻿@namespace Destinity.Components.Event
 @using Destinity.Components.Event.EventCalendars
 
-<MudContainer Fixed="true">
+<div class="event-calendar-container">
     <MudText Typo="Typo.h3" Align="Align.Center">@EventData.Name</MudText>
-    
-    <EventCalendar/>
-</MudContainer>
+
+    <div>
+        <EventCalendar/>
+    </div>
+    <div class="save-button">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">Save</MudButton>
+    </div>
+</div>
 
 @code {
+
     [Parameter]
     public Guid EventId { get; set; }
 
@@ -17,7 +23,7 @@
         EventData = new EventData() {
             Id = EventId,
             Name = "Sesja RPG",
-            
         };
     }
+
 }
