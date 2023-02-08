@@ -1,5 +1,9 @@
-﻿<MudTooltip Delay="500" Text="@_tooltip" Color="Color.Default">
-    <MudIconButton Class="answer-button" Icon="@_icon" OnClick="OnClick" Color="@_color"/>
+﻿@inject IJSRuntime JsRuntime;
+
+<MudTooltip Delay="500" Text="@_tooltip" Color="Color.Default">
+    <div @oncontextmenu="OnContextMenu" @oncontextmenu:preventDefault="true">
+            <MudIconButton Class="answer-button" Icon="@_icon" OnClick="OnClick" Color="@_color"/>
+    </div>
 </MudTooltip>
 
 
@@ -7,7 +11,7 @@
     private AnswerStatus _status = AnswerStatus.Unknown;
     private string _icon = Icons.Material.Filled.CheckBoxOutlineBlank;
     private Color _color = Color.Default;
-    private string _tooltip = "Click to change";
+    private string _tooltip = "";
 
     private void OnClick() {
         switch (_status) {
@@ -38,6 +42,12 @@
         }
     }
 
+    private void OnContextMenu(MouseEventArgs e) {
+        _status = AnswerStatus.Unknown;
+        _icon = Icons.Material.Filled.CheckBoxOutlineBlank;
+        _color = Color.Default;
+        _tooltip = "Click to change";
+    }
 }
 
 <style media="screen and (max-width: 740px)">
