@@ -1,5 +1,6 @@
 ﻿@namespace Destinity.Components.Event
 @using Destinity.Components.Event.EventCalendars
+@inject NavigationManager Navigation
 
 <div class="event-calendar-container">
     <MudText Typo="Typo.h3" Align="Align.Center">@EventData.Name</MudText>
@@ -7,8 +8,8 @@
     <div>
         <EventCalendar/>
     </div>
-    <div class="save-button">
-        <MudButton Variant="Variant.Filled" Color="Color.Primary">Save</MudButton>
+    <div class="result-button">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="@LinkToResult">Results</MudButton>
     </div>
 </div>
 
@@ -18,9 +19,11 @@
     public Guid EventId { get; set; }
 
     private EventData EventData { get; set; } = null!;
+    private string LinkToResult => $"{Navigation.ToBaseRelativePath(Navigation.Uri)}/result";
+    
 
     protected override void OnInitialized() {
-        EventData = new EventData() {
+        EventData = new EventData {
             Id = EventId,
             Name = "Sesja RPG",
         };

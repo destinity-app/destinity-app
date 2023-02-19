@@ -1,0 +1,15 @@
+﻿@page "/Event/{eventId:guid}/result"
+@inject NavigationManager Navigation
+@using Destinity.Components.EventResult
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudButton Href="@GoBackLink" StartIcon="@Icons.Material.Outlined.ArrowBack">Go back to event</MudButton>
+    <EventResult />
+</MudContainer>
+
+@code {
+    [Parameter]
+    public Guid EventId { get; set; }
+
+    private string GoBackLink => Navigation.ToBaseRelativePath(Navigation.Uri).Split("/result")[0];
+}
