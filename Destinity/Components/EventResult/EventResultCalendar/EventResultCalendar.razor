@@ -1,5 +1,37 @@
-﻿
+﻿@using Destinity.Components.EventResult.EventResultCalendar.AnswerResults
+@using Destinity.Components.Event.EventCalendars.EventCalendarDayHeaders
+
+<table style="width: 100%; border-collapse: collapse;">
+    <tr class="header">
+        <th class="header-cell">Hour</th>
+        @foreach (var day in Data.Days) {
+            <th class="header-cell">
+                <EventCalendarDayHeader Date="@day.Date"/>
+            </th>
+        }
+    </tr>
+    @for (var hour = 7; hour < 24; hour++) {
+        <tr style="">
+            <td class="event-calendar-cell">
+                <div class="hour">
+                    @(new TimeOnly(hour, 0, 0))
+                </div>
+            </td>
+            @foreach (var day in Data.Days) {
+                <td class="event-calendar-cell">
+                    <div class="event-calendar-answer">
+                        <AnswerResult Answers="GetAnswers(day, hour)"/>
+                    </div>
+                </td>
+            }
+        </tr>
+    }
+</table>
 
 @code {
-    
+
+    [Parameter]
+    public required CalendarData Data { get; set; }
+
+    private List<Answer> GetAnswers(DayData day, int hour) => day.Slots.SingleOrDefault(x => x.Start.Hour == hour)?.Answers ?? new List<Answer>();
 }

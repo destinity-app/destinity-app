@@ -9,7 +9,7 @@ public class DefaultTheme {
 			AppbarText = Colors.Shades.Black,
 			Primary = new MudColor("#B113F6")
 		},
-		PaletteDark = new PaletteDark() {
+		PaletteDark = new PaletteDark {
 			Primary = new MudColor("#B113F6")
 		}
 	};

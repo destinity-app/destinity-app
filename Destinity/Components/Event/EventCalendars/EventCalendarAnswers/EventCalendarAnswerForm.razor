@@ -1,8 +1,6 @@
-﻿@inject IJSRuntime JsRuntime;
-
-<MudTooltip Delay="500" Text="@_tooltip" Color="Color.Default">
+﻿<MudTooltip Delay="500" Text="@_tooltip" Color="Color.Default">
     <div @oncontextmenu="OnContextMenu" @oncontextmenu:preventDefault="true">
-            <MudIconButton Class="answer-button" Icon="@_icon" OnClick="OnClick" Color="@_color"/>
+        <MudIconButton Class="answer-button" Icon="@_icon" OnClick="OnClick" Color="@_color"/>
     </div>
 </MudTooltip>
 
@@ -48,6 +46,7 @@
         _color = Color.Default;
         _tooltip = "Click to change";
     }
+
 }
 
 <style media="screen and (max-width: 740px)">

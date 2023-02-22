@@ -1,0 +1,19 @@
+﻿.header {
+    width: 100%;
+}
+
+.header-cell {
+    border-bottom: 1px solid grey;
+}
+
+.hour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.event-calendar-cell {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}

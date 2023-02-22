@@ -1,11 +1,11 @@
 ﻿@using Destinity.Components.EventResult.EventResultCalendar
 
 
-<MudText Align="Align.Center" Typo="Typo.h2">Event name</MudText>
-<EventResultCalendar />
+<MudText Align="Align.Center" Typo="Typo.h2">@EventResultData.Name</MudText>
+<EventResultCalendar Data="EventResultData.CalendarData" />
 
 @code {
     [Parameter]
-    public EventResultData EventResultData { get; set; }
+    public required EventResultData EventResultData { get; set; }
 }
 

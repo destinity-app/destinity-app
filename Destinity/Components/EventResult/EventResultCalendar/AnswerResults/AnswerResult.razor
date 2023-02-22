@@ -1,0 +1,61 @@
+﻿@using Destinity.Data
+<div class="answer-result @(GetBackground())">
+    @foreach (var answer in Answers) {
+        <MudTooltip Color="Color.Default" Text="@GetAttendeeNickname(answer.AttendeeId)">
+            <MudIcon Icon="@GetIcon(answer.Status)" Color="@GetColor(answer.Status)"/>
+        </MudTooltip>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public required List<Answer> Answers { get; set; }
+
+    protected override void OnInitialized() {
+        FillAnswers();
+    }
+
+    private void FillAnswers() {
+        var attendees = TestData.EventResultData.Attendees;
+        if (Answers.Count == attendees.Count) return;
+
+        foreach (var attendee in attendees) {
+            if (Answers.Any(x => x.AttendeeId == attendee.Id)) continue;
+            Answers.Add(new Answer {
+                AttendeeId = attendee.Id,
+                Status = AnswerStatus.Unknown
+            });
+        }
+    }
+
+    private string GetIcon(AnswerStatus status) {
+        return status switch {
+            AnswerStatus.Unknown      => Icons.Material.Filled.CheckBoxOutlineBlank,
+            AnswerStatus.Accepted     => Icons.Material.Filled.CheckBox,
+            AnswerStatus.Rejected     => Icons.Material.Filled.IndeterminateCheckBox,
+            AnswerStatus.OnlyIfNeeded => Icons.Material.Filled.CheckBox,
+            _                         => throw new ArgumentOutOfRangeException(nameof(status), status, null)
+            };
+    }
+
+    private Color GetColor(AnswerStatus status) {
+        return status switch {
+            AnswerStatus.Unknown      => Color.Default,
+            AnswerStatus.Accepted     => Color.Success,
+            AnswerStatus.Rejected     => Color.Error,
+            AnswerStatus.OnlyIfNeeded => Color.Warning,
+            _                         => throw new ArgumentOutOfRangeException(nameof(status), status, null)
+            };
+    }
+
+    private string GetAttendeeNickname(Guid id) {
+        return TestData.EventResultData.Attendees.Single(x => x.Id == id).Nickname;
+    }
+
+    private string GetBackground() {
+        if (Answers.Any(x => x.Status == AnswerStatus.Rejected)) return "rejected";
+        if (Answers.All(x => x.Status is AnswerStatus.Accepted or AnswerStatus.Unknown)) return "accepted";
+        return string.Empty;
+    }
+}
