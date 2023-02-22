@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+﻿FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG PORT
 WORKDIR /src
 COPY ["Destinity/Destinity.csproj", "Destinity/"]
